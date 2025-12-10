@@ -5,6 +5,7 @@
     <meta name="author" content="Скачков Іван ІП-34">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Скачков Іван ІП-34 - Лабораторна робота №8</title>
+
     <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -49,20 +50,151 @@
     </div>
 </header>
 
+<section class="hero" id="home" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/startup.jpg');">
+    <div class="container hero-content">
+        <h1>Startup you can build a website online using the Bootstrap builder.</h1>
+        <a href="#portfolio" class="btn btn-blue">Visit Our Works</a>
+    </div>
+</section>
+
+<section class="intro text-center">
+    <div class="container">
+        <p>With more than 20 years of experience we can deliver the best product design.</p>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <div class="container grid-3">
+        <div class="service-item">
+            <div class="icon">🎨</div>
+            <h3>Graphic design</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="service-item">
+            <div class="icon">💻</div>
+            <h3>Web design</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="service-item">
+            <div class="icon">📱</div>
+            <h3>Mobile app</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+</section>
+
+<section class="split-section bg-dark">
+    <div class="container split-container">
+        <div class="split-image">
+            <img src="img/meeting3.jpg" alt="Working process">
+        </div>
+        <div class="split-text">
+            <h2>Empowering individuals</h2>
+            <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables.</p>
+            <a href="#" class="btn btn-blue">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+    <div class="container text-center">
+        <h2>Featured Works</h2>
+        <div class="gallery grid-3">
+            <img src="img/webdesign1.jpg" alt="Web Design 1">
+            <img src="img/webdesign2.jpg" alt="Web Design 2">
+            <img src="img/webdesign3.jpg" alt="Web Design 3">
+            <img src="img/code1.jpg" alt="Code 1">
+            <img src="img/code2.jpg" alt="Code 2">
+            <img src="img/code3.jpg" alt="Code 3">
+        </div>
+    </div>
+</section>
+
+<section class="split-section">
+    <div class="container split-container">
+        <div class="split-text">
+            <h2>How we work</h2>
+            <p>Function information without cross-media value. Efficiently unleash cross-media information without cross-media value.</p>
+            <a href="#" class="btn-play">▶ Watch Video</a>
+        </div>
+        <div class="split-image">
+            <img src="img/meeting2.jpg" alt="Team Meeting">
+        </div>
+    </div>
+</section>
+
+<section class="team">
+    <div class="container text-center">
+        <h2>Our Creative Team</h2>
+        <div class="grid-4">
+            <div class="team-member">
+                <img src="img/Portrait1.jpg" class="avatar" alt="Founder">
+                <h3>Brandon Yielder</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="img/Portrait2.jpg" class="avatar" alt="Designer">
+                <h3>Elena Anderson</h3>
+                <p>Graphic Designer</p>
+            </div>
+            <div class="team-member">
+                <img src="img/Portrait3.jpg" class="avatar" alt="Developer">
+                <h3>Roman Solo</h3>
+                <p>Wordpress Developer</p>
+            </div>
+            <div class="team-member">
+                <img src="img/office3.jpg" class="avatar" alt="Manager">
+                <h3>Yeudi Bin</h3>
+                <p>Software Engineer</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer text-center" id="contact">
+    <p>© 2025 Startup. Виконав: Скачков Іван (ІП-34)</p>
+</footer>
+
 <script>
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav");
-    const navLinks = document.querySelectorAll(".nav a");
+    const dropBtns = document.querySelectorAll(".dropbtn");
+    const navLinks = document.querySelectorAll(".nav a:not(.dropbtn)");
 
     hamburger.addEventListener("click", () => {
         hamburger.classList.toggle("active");
         navMenu.classList.toggle("active");
     });
 
+    dropBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdown = btn.parentElement;
+
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) d.classList.remove('active');
+            });
+
+            dropdown.classList.toggle("active");
+        });
+    });
+
     navLinks.forEach(n => n.addEventListener("click", () => {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
+        // Закриваємо всі дропдауни
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
     }));
+
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        }
+    });
 </script>
 
 </body>
